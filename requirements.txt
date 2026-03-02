@@ -1,3 +1,4 @@
 python-telegram-bot==21.11.1
 Flask==3.1.0
 psycopg[binary]==3.2.13
+gunicorn==23.0.0

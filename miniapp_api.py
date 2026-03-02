@@ -19,6 +19,7 @@ from db import (
 
 app = Flask(__name__)
 MINIAPP_DIR = Path(__file__).resolve().parent / "miniapp"
+init_db()
 
 
 def json_error(message: str, status: int = 400):
@@ -100,9 +101,24 @@ def root():
     return redirect("/miniapp/index.html", code=302)
 
 
+@app.route("/index.html", methods=["GET"])
+def root_index_compat():
+    return redirect("/miniapp/index.html", code=302)
+
+
 @app.route("/miniapp", methods=["GET"])
 def miniapp_root():
     return redirect("/miniapp/index.html", code=302)
+
+
+@app.route("/app.js", methods=["GET"])
+def app_js_compat():
+    return send_from_directory(MINIAPP_DIR, "app.js")
+
+
+@app.route("/styles.css", methods=["GET"])
+def styles_css_compat():
+    return send_from_directory(MINIAPP_DIR, "styles.css")
 
 
 @app.route("/miniapp/<path:filename>", methods=["GET"])
@@ -209,6 +225,5 @@ def save_profile():
 
 
 if __name__ == "__main__":
-    init_db()
     port = int(os.getenv("PORT", "8000"))
     app.run(host="0.0.0.0", port=port)

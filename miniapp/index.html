@@ -1,0 +1,55 @@
+﻿<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Эпштейнчик Mini App</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <p class="badge">Эпштейнчик</p>
+      <h1>Настройки анкеты</h1>
+      <p class="sub">Изменения применятся сразу после отправки.</p>
+    </header>
+
+    <section class="card">
+      <label for="bio">Bio</label>
+      <textarea id="bio" maxlength="300" placeholder="Расскажи о себе..."></textarea>
+      <p id="bioCounter" class="hint">0/300</p>
+    </section>
+
+    <section class="card">
+      <label for="looking">Кого ищешь</label>
+      <select id="looking">
+        <option value="any">Любой</option>
+        <option value="male">Муж</option>
+        <option value="female">Жен</option>
+      </select>
+
+      <div class="age-grid">
+        <div>
+          <label for="minAge">Мин. возраст</label>
+          <input id="minAge" type="number" min="18" max="99" value="18" />
+        </div>
+        <div>
+          <label for="maxAge">Макс. возраст</label>
+          <input id="maxAge" type="number" min="18" max="99" value="35" />
+        </div>
+      </div>
+
+      <label class="toggle">
+        <input id="isActive" type="checkbox" checked />
+        <span>Анкета активна</span>
+      </label>
+    </section>
+
+    <button id="saveBtn" class="save">Сохранить</button>
+    <p id="status" class="status"></p>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
